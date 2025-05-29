@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Hello Tinkatink!</title>
+    <style>
+        body, html {
+            font-family: sans-serif;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        #output {
+            padding: 10px;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+<pre id="output"></pre>
+<canvas id="canvas" oncontextmenu="preventDefault()" style="display: none;"></canvas>
+<script type='text/javascript'>
+    var Module = {
+        canvas: (function() {
+            return document.getElementById('canvas');
+        })(),
+        print: (function() {
+            var element = document.getElementById('output');
+            if (element) {
+                return function(text) {
+                    if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+                    element.innerHTML += text + '<br>';
+                    element.scrollTop = element.scrollHeight;
+                };
+            }
+        })(),
+        printErr: function(text) {
+            if (arguments.length > 1) text = Array.prototype.slice.call(arguments).join(' ');
+            console.error(text);
+        }
+    };
+</script>
+
+<script async type="text/javascript" src="index.js"></script>
+</body>
+</html>
